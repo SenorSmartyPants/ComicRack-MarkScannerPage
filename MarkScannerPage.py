@@ -86,9 +86,10 @@ def getScannerPage(book):
 	else:
 		return None
 
-#@Name	Mark scanner page...
+#@Name	Mark scanner page
 #@Hook	Books
 #@Description Mark scanner page as deleted
+#@Image scan-icon.png
 def MarkScannerPage(books):
 	for book in books:
 
