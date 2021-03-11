@@ -35,8 +35,12 @@ def getScannerPage(book):
 	# make a guess at the scanner page
 	count = book.Pages.Count
 
+	if count == 0:
+		print '{0} returned zero page count. Marking not run.'.format(book.Caption)
+
 	# too few pages to really know
 	if count < 5:
+		print '{0} returned fewer than 5 pages. Not enough to find scanner page reliably.'.format(book.Caption)
 		return None
 
 	name_list = getPageNameList(book)
