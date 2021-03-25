@@ -28,23 +28,20 @@ jobs:
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-        
-      - name: test version get
-        run: |
-          echo $VERSION
-        env:
-          VERSION: ${{ steps.get_version.outputs.VERSION }}
 
       # Runs a set of commands using the runners shell
-      # rm README.md .git*
       - name: Build
         run: |
           zip -r MarkScannerPage-$VERSION.crplugin * -x "*.git*" README.md
+        env:
+          VERSION: ${{ steps.get_version.outputs.VERSION }}          
 
       # Runs a set of commands using the runners shell
       - name: Test
         run: |
           unzip -vl MarkScannerPage-$VERSION.crplugin
+        env:
+          VERSION: ${{ steps.get_version.outputs.VERSION }}          
           
       - name: Release
         uses: softprops/action-gh-release@v1
@@ -52,5 +49,6 @@ jobs:
         with:
           files: MarkScannerPage-$VERSION.crplugin
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}          
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ steps.get_version.outputs.VERSION }}          
           
