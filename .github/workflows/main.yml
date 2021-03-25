@@ -45,6 +45,7 @@ jobs:
         with:
           files: MarkScannerPage-${{ steps.get_version.outputs.VERSION }}.crplugin
           draft: true
+          tag: 'v0.2.0'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}         
           
