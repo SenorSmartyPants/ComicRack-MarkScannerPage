@@ -32,7 +32,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build
         run: |
-          zip -r MarkScannerPage-${{ steps.get_version.outputs.VERSION }}.crplugin * -x "*.git*" README.md      
+          zip -r MarkScannerPage-${{ steps.get_version.outputs.VERSION }}.crplugin * -x "*.git*" *.md      
 
       # Runs a set of commands using the runners shell
       - name: Test
